@@ -1,0 +1,32 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  gap: 20px;
+  max-width: 100%;
+  padding: 15px;
+
+  > * {
+    grid-column: col-start / span 12;
+  }
+
+  @media (min-width: 700px) {
+    > * {
+      grid-column: col-start 2 / span 10;
+    }
+    .content {
+      grid-row: 2 / 4;
+    }
+    nav ul {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 699px) {
+    padding: 0 20px;
+  }
+
+  .header {
+    padding-top: 25px;
+    text-align: center;
+  }
+}

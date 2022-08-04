@@ -1,0 +1,12 @@
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  @media (max-width: 699px) {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}

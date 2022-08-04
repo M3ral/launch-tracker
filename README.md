@@ -1,12 +1,49 @@
-# Getting Started with Create React App
+### User Stories
+#### • As a user, when I open the app, I want to see all the launches for the next 3 months, plotted on a map or globe. - Completed
+I set up a redux store to handle the state management of the app, using the redux toolkit library.
+I started by setting up the slice for the launches, with the initial state of the app and the 
+asyncthunk to handle the API call to fetch all the launches.
+After setting up redux as a state provider, I started working on the components for the app.
+Installed the map library and created an account for the token.
+Having the token set on the component, I just had to map the state from the store and pass it
+to the Markers.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+#### • As a user, I want to be able to see the first occurring launch depending on my start date and end date selection. - Completed
+The app initially has the viewport set to zoom out with the longitude and latitude set both to 0, which enables the view of the entire map without the markers, but when ever the app
+receives new items to show, it uses the first item’s props to set the viewport.
 
-## Available Scripts
+#### • As a user, I want to be able to select a start date and an end date so I can filter the launches according to my selection. - Completed
+Every time the page is loaded (and when the values of the filter change), the Filter component dispatches an action to fetch all the launches, passing the date start and date
+end as arguments.
 
-In the project directory, you can run:
+#### • As a user, I want to be able to select a point on the map and see the name, time of launch, name of the launch pad and the agencies that are collaborating on the launch. - Completed
+  When the user clicks on a Marker, it automatically passes the values of the launch assigned
+  to that Marker to the Popover component, which is used to print the info required by the
+  story.
 
-### `npm start`
+#### • As a user, I want to receive feedback when the app is loading so that I know that when I change something in the UI, something is being loaded - Completed
+I created the Feedback component, which is rendered in three different cases:
+- When the app is loading.
+- When the app has error.
+- When there are no launches to show, given the dates by the user.
+
+The Feedback component uses the store’s state to get the status of the API call and the
+  metadata
+
+#### • As a user, I want to receive feedback when the app encounters an error in reaching the API.
+  See answer to the question above.
+
+#### • As a user, I want to be able to filter the launches based on the agencies that are participating in the launches that are relevant to my selection of start and end date.
+  The filter component would have a select with the agencies participating as options.
+  I would create a custom selector with createSelector to store the agencies and pass them to
+  the Select.
+
+#### • As a user, I want to be able to filter the launches based on whether or not they were
+  successful.
+  The filter component would have a Checkbox to toggle between the successful ones and the
+  unsuccessful ones.
+
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,33 +51,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+#### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
